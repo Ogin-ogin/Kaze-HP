@@ -1,65 +1,127 @@
-import Image from "next/image";
+import NewsCard from '@/components/NewsCard';
+import Link from 'next/link';
+
+// サンプルニュースデータ（後でGoogle Sheetsから取得）
+const sampleNews = [
+  {
+    id: '1',
+    title: '第48回おかあさんコーラス全国大会出場決定！',
+    thumbnail: '',
+    date: '2025-06-15',
+  },
+  {
+    id: '2',
+    title: '6月の練習スケジュールのお知らせ',
+    thumbnail: '',
+    date: '2025-06-01',
+  },
+  {
+    id: '3',
+    title: '新団員募集中！見学・体験練習受付中',
+    thumbnail: '',
+    date: '2025-05-20',
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* ヒーローセクション */}
+      <section className="text-center mb-16">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          女声コーラス 風
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
+          心を込めて歌を届ける。<br />
+          それが私たちの願いです。
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link
+            href="/recruitment"
+            className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
+          >
+            団員募集中
+          </Link>
+          <Link
+            href="/about"
+            className="px-8 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-lg font-medium"
+          >
+            詳しく見る
+          </Link>
+        </div>
+      </section>
+
+      {/* ニュースセクション */}
+      <section className="mb-16">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900">ニュース</h2>
+          <Link
+            href="/news"
+            className="text-blue-600 hover:text-blue-700 font-medium"
+          >
+            すべて見る →
+          </Link>
+        </div>
+
+        {/* ニュースギャラリー（Notionギャラリービュー風） */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sampleNews.map((news) => (
+            <NewsCard
+              key={news.id}
+              id={news.id}
+              title={news.title}
+              thumbnail={news.thumbnail}
+              date={news.date}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* 団体紹介セクション */}
+      <section className="bg-gray-50 rounded-lg p-8 md:p-12 mb-16">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">私たちについて</h2>
+        <div className="prose prose-lg max-w-none">
+          <p className="text-gray-700 leading-relaxed mb-4">
+            やさしいうた声は 大きな思いやりに<br />
+            楽しいうた声は おおきな喜びに<br />
+            そして ちいさなうた声は 大きなハーモニーに
+          </p>
+          <p className="text-gray-700 leading-relaxed mb-6">
+            私たちはたくさんの仲間を待っています。
+          </p>
+          <Link
+            href="/about"
+            className="inline-block px-6 py-3 bg-white text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium"
+          >
+            もっと詳しく →
+          </Link>
+        </div>
+      </section>
+
+      {/* 練習情報セクション */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-white border border-gray-200 rounded-lg p-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">練習日時</h3>
+          <p className="text-gray-700 leading-relaxed">
+            毎週木曜日 10:00-13:00<br />
+            練習場所：北九州市八幡西区黒崎「コムシティ」ほか
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <div className="bg-white border border-gray-200 rounded-lg p-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">お問い合わせ</h3>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            見学・体験練習は随時受け付けています。<br />
+            お気軽にお問い合わせください。
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            お問い合わせ
+          </Link>
         </div>
-      </main>
+      </section>
     </div>
   );
 }
