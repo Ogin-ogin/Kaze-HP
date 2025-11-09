@@ -173,17 +173,21 @@ git push -u origin main
 #### EDIT_PASSWORD
 - 編集機能用のパスワード（任意の強固な文字列）
 
-#### GOOGLE_CALENDAR_EMBED_URL
+#### NEXT_PUBLIC_GOOGLE_CALENDAR_EMBED_URL
 - Googleカレンダーの埋め込みURL
+- **注意**: クライアント側で使用するため `NEXT_PUBLIC_` プレフィックスが必要
 
-#### GOOGLE_FORM_URL
+#### NEXT_PUBLIC_GOOGLE_FORM_URL
 - Google FormsのURL
+- **注意**: クライアント側で使用するため `NEXT_PUBLIC_` プレフィックスが必要
 
-#### INSTAGRAM_URL
+#### NEXT_PUBLIC_INSTAGRAM_URL
 - InstagramのURL（例: `https://instagram.com/your-account`）
+- **注意**: クライアント側で使用するため `NEXT_PUBLIC_` プレフィックスが必要
 
-#### BLOG_URL
+#### NEXT_PUBLIC_BLOG_URL
 - ブログのURL
+- **注意**: クライアント側で使用するため `NEXT_PUBLIC_` プレフィックスが必要
 
 ### 5. デプロイ
 

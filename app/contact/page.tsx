@@ -1,6 +1,5 @@
 export default function ContactPage() {
-  // TODO: 実際のGoogle FormsのURLに置き換えてください
-  const googleFormUrl = 'https://forms.google.com/';
+  const googleFormUrl = process.env.NEXT_PUBLIC_GOOGLE_FORM_URL || 'https://forms.google.com/';
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

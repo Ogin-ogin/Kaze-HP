@@ -1,7 +1,5 @@
 export default function SchedulePage() {
-  // TODO: 実際のGoogleカレンダーの埋め込みURLに置き換えてください
-  // Googleカレンダーの設定 > 統合 > 埋め込みコード から取得
-  const calendarEmbedUrl = '';
+  const calendarEmbedUrl = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_EMBED_URL || '';
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

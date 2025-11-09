@@ -7,6 +7,9 @@ import { Menu, X } from 'lucide-react';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com';
+  const blogUrl = process.env.NEXT_PUBLIC_BLOG_URL || 'https://blog.example.com';
+
   const navigation = [
     { name: 'ホーム', href: '/' },
     { name: '団体紹介', href: '/about' },
@@ -42,7 +45,7 @@ export default function Header() {
             {/* 外部リンク */}
             <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
               <a
-                href="https://instagram.com"
+                href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 text-gray-600 hover:text-pink-600 transition-colors"
@@ -53,7 +56,7 @@ export default function Header() {
                 </svg>
               </a>
               <a
-                href="https://blog.example.com"
+                href={blogUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-2 text-sm text-gray-700 hover:bg-pastel-blue-50 hover:text-pastel-blue-700 rounded-md transition-colors"
@@ -87,18 +90,18 @@ export default function Header() {
             ))}
             <div className="pt-4 mt-4 border-t border-gray-200 space-y-2">
               <a
-                href="https://instagram.com"
+                href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block px-3 py-2 text-base text-gray-700 hover:bg-gray-100 rounded-md"
+                className="block px-3 py-2 text-base text-gray-700 hover:bg-pastel-blue-50 rounded-md"
               >
                 Instagram
               </a>
               <a
-                href="https://blog.example.com"
+                href={blogUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block px-3 py-2 text-base text-gray-700 hover:bg-gray-100 rounded-md"
+                className="block px-3 py-2 text-base text-gray-700 hover:bg-pastel-blue-50 rounded-md"
               >
                 ブログ
               </a>

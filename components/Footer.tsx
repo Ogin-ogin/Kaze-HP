@@ -1,4 +1,9 @@
+'use client';
+
 export default function Footer() {
+  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com';
+  const blogUrl = process.env.NEXT_PUBLIC_BLOG_URL || 'https://blog.example.com';
+
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -26,18 +31,18 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">リンク</h3>
             <div className="space-y-2">
               <a
-                href="https://instagram.com"
+                href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                className="block text-sm text-gray-600 hover:text-pastel-blue-600 transition-colors"
               >
                 Instagram
               </a>
               <a
-                href="https://blog.example.com"
+                href={blogUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                className="block text-sm text-gray-600 hover:text-pastel-blue-600 transition-colors"
               >
                 ブログ
               </a>
