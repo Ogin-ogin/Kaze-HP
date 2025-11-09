@@ -19,7 +19,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <header className="sticky top-0 z-50 bg-white border-b border-pastel-blue-200">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* ロゴ */}
@@ -33,7 +33,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+                className="px-3 py-2 text-sm text-gray-700 hover:bg-pastel-blue-50 hover:text-pastel-blue-700 rounded-md transition-colors"
               >
                 {item.name}
               </Link>
@@ -56,7 +56,7 @@ export default function Header() {
                 href="https://blog.example.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+                className="px-3 py-2 text-sm text-gray-700 hover:bg-pastel-blue-50 hover:text-pastel-blue-700 rounded-md transition-colors"
               >
                 ブログ
               </a>

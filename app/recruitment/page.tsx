@@ -61,12 +61,12 @@ export default function RecruitmentPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
             <span className="mr-2">✅</span> 会費
           </h2>
-          <p className="text-3xl font-bold text-blue-600 mb-4">月額 5,000円</p>
+          <p className="text-3xl font-bold text-pastel-blue-600 mb-4">月額 5,000円</p>
           <p className="text-sm text-gray-600">（楽譜代や衣装代などは別途必要になる場合があります）</p>
         </section>
 
         {/* こんな方におすすめ */}
-        <section className="bg-blue-50 p-8 rounded-lg">
+        <section className="bg-pastel-blue-50 p-8 rounded-lg">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
             <span className="mr-2">✅</span> こんな方におすすめ
           </h2>
@@ -91,7 +91,7 @@ export default function RecruitmentPage() {
         </section>
 
         {/* 見学・体験のご案内 */}
-        <section className="bg-white border-2 border-blue-600 rounded-lg p-8 text-center">
+        <section className="bg-white border-2 border-pastel-blue-500 rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center justify-center">
             <span className="mr-2">✅</span> 見学・体験のご案内
           </h2>
@@ -101,7 +101,7 @@ export default function RecruitmentPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-block px-10 py-4 bg-blue-600 text-white text-lg font-bold rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-block px-10 py-4 bg-pastel-blue-500 text-white text-lg font-bold rounded-lg hover:bg-pastel-blue-600 transition-colors shadow-md"
           >
             📱 応募はこちらから
           </Link>

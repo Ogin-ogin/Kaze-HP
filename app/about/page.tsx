@@ -48,7 +48,7 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="bg-blue-50 p-8 rounded-lg border-l-4 border-blue-600">
+        <section className="bg-pastel-blue-50 p-8 rounded-lg border-l-4 border-pastel-blue-500">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">私たちと一緒に歌いませんか？</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             合唱経験の有無は問いません。音楽を愛する心さえあれば、どなたでも歓迎いたします。ご興味のある方は、お気軽に見学にお越しください。

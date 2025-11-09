@@ -101,7 +101,7 @@ export default function ConcertsPage() {
             {/* コンテンツ */}
             <div className="p-6">
               <p className="text-sm text-gray-500 mb-2">{concert.date}</p>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-pastel-blue-600 transition-colors">
                 {concert.title}
               </h3>
               <p className="text-sm text-gray-600 mb-3">{concert.location}</p>
@@ -116,7 +116,7 @@ export default function ConcertsPage() {
       </div>
 
       {/* 設定ガイド */}
-      <div className="mt-16 bg-blue-50 p-8 rounded-lg border-l-4 border-blue-600">
+      <div className="mt-16 bg-pastel-blue-50 p-8 rounded-lg border-l-4 border-pastel-blue-500">
         <h2 className="text-xl font-bold text-gray-900 mb-4">演奏会情報の追加方法</h2>
         <p className="text-gray-700 mb-4">
           演奏会情報はGoogle Sheetsで管理し、パンフレットやポスターの画像はGoogle Driveに保存します。

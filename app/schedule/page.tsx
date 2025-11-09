@@ -8,7 +8,7 @@ export default function SchedulePage() {
       <h1 className="text-4xl font-bold text-gray-900 mb-8">スケジュール</h1>
 
       <div className="space-y-8">
-        <section className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+        <section className="bg-pastel-blue-50 p-6 rounded-lg border-l-4 border-pastel-blue-500">
           <h2 className="text-xl font-bold text-gray-900 mb-4">定期練習</h2>
           <p className="text-gray-700 leading-relaxed">
             毎週木曜日 10:00-13:00<br />

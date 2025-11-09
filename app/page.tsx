@@ -38,13 +38,13 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
             href="/recruitment"
-            className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
+            className="px-8 py-3 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors text-lg font-medium shadow-sm"
           >
             団員募集中
           </Link>
           <Link
             href="/about"
-            className="px-8 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-lg font-medium"
+            className="px-8 py-3 bg-white text-pastel-blue-700 border border-pastel-blue-400 rounded-lg hover:bg-pastel-blue-50 transition-colors text-lg font-medium"
           >
             詳しく見る
           </Link>
@@ -57,7 +57,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-gray-900">ニュース</h2>
           <Link
             href="/news"
-            className="text-blue-600 hover:text-blue-700 font-medium"
+            className="text-pastel-blue-600 hover:text-pastel-blue-700 font-medium"
           >
             すべて見る →
           </Link>
@@ -91,7 +91,7 @@ export default function Home() {
           </p>
           <Link
             href="/about"
-            className="inline-block px-6 py-3 bg-white text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium"
+            className="inline-block px-6 py-3 bg-white text-pastel-blue-600 border border-pastel-blue-500 rounded-lg hover:bg-pastel-blue-50 transition-colors font-medium"
           >
             もっと詳しく →
           </Link>
@@ -116,7 +116,7 @@ export default function Home() {
           </p>
           <Link
             href="/contact"
-            className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="inline-block px-6 py-2 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors font-medium shadow-sm"
           >
             お問い合わせ
           </Link>

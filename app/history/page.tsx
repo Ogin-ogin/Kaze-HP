@@ -89,7 +89,7 @@ export default function HistoryPage() {
         ))}
       </div>
 
-      <div className="mt-12 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+      <div className="mt-12 bg-pastel-blue-50 p-6 rounded-lg border-l-4 border-pastel-blue-500">
         <p className="text-sm text-gray-700">
           詳細はブログページでもご覧いただけます。
         </p>

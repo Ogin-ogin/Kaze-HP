@@ -3,6 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* 女声コーラス風のイメージカラー - パステルブルー */
+  --pastel-blue-light: #D4E8F5;
+  --pastel-blue: #89CFF0;
+  --pastel-blue-dark: #5FB3E0;
 }
 
 @theme inline {
@@ -10,6 +15,18 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* カスタムカラー */
+  --color-pastel-blue-50: #F0F8FC;
+  --color-pastel-blue-100: #D4E8F5;
+  --color-pastel-blue-200: #B8D8E8;
+  --color-pastel-blue-300: #9DCFEB;
+  --color-pastel-blue-400: #89CFF0;
+  --color-pastel-blue-500: #6BB6E5;
+  --color-pastel-blue-600: #5FB3E0;
+  --color-pastel-blue-700: #4A8FC7;
+  --color-pastel-blue-800: #3A72A0;
+  --color-pastel-blue-900: #2A5578;
 }
 
 @media (prefers-color-scheme: dark) {

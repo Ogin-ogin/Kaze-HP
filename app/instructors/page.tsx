@@ -18,7 +18,7 @@ export default function InstructorsPage() {
             </div>
           </div>
 
-          <div className="mt-6 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+          <div className="mt-6 bg-pastel-blue-50 p-6 rounded-lg border-l-4 border-pastel-blue-500">
             <p className="text-gray-700 font-medium">「合唱の楽しさを満喫しましょう！」</p>
             <p className="text-sm text-gray-600 mt-2">益永先生より</p>
           </div>

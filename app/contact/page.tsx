@@ -25,7 +25,7 @@ export default function ContactPage() {
               <h3 className="font-semibold text-gray-900 mb-2">練習場所</h3>
               <p>北九州市八幡西区黒崎「コムシティ」ほか</p>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg mt-6">
+            <div className="bg-pastel-blue-50 p-4 rounded-lg mt-6">
               <p className="text-sm text-gray-600">
                 ※ 見学をご希望の方は、事前にお問い合わせフォームよりご連絡ください。
               </p>
@@ -43,7 +43,7 @@ export default function ContactPage() {
             href={googleFormUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-10 py-4 bg-blue-600 text-white text-lg font-bold rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-block px-10 py-4 bg-pastel-blue-500 text-white text-lg font-bold rounded-lg hover:bg-pastel-blue-600 transition-colors"
           >
             お問い合わせフォームを開く
           </a>
