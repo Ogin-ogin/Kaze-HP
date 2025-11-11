@@ -5,7 +5,7 @@ import MemberSection from '@/components/MemberSection';
 
 export default async function Home() {
   // Google Sheetsからニュースデータを取得（最新3件）
-  let latestNews = [];
+  let latestNews: Array<{ id: string; title: string; date: string; thumbnail: string; content: string }> = [];
   try {
     const allNews = await getNewsFromSheets();
     latestNews = allNews.slice(0, 3);

@@ -2,10 +2,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getNewsFromSheets } from '@/lib/googleSheets';
 
-export default async function NewsDetailPage({ params }: { params: { id: string } }) {
+export default async function NewsDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  // paramsを解決
+  const { id } = await params;
+
   // Google Sheetsからニュースデータを取得
   const allNews = await getNewsFromSheets();
-  const news = allNews.find((item) => item.id === params.id);
+  const news = allNews.find((item) => item.id === id);
 
   if (!news) {
     notFound();
