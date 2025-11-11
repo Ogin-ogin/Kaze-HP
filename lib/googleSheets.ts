@@ -2,6 +2,11 @@ import { google } from 'googleapis';
 
 // Google Sheets APIの認証
 function getAuthClient() {
+  // 環境変数が設定されていない場合はnullを返す
+  if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
+    return null;
+  }
+
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -17,6 +22,10 @@ function getAuthClient() {
 export async function getNewsFromSheets() {
   try {
     const auth = getAuthClient();
+    if (!auth || !process.env.NEWS_SPREADSHEET_ID) {
+      console.warn('Google Sheets API not configured, returning empty array');
+      return [];
+    }
     const sheets = google.sheets({ version: 'v4', auth });
 
     const response = await sheets.spreadsheets.values.get({
@@ -43,6 +52,10 @@ export async function getNewsFromSheets() {
 export async function getConcertsFromSheets() {
   try {
     const auth = getAuthClient();
+    if (!auth || !process.env.CONCERTS_SPREADSHEET_ID) {
+      console.warn('Google Sheets API not configured, returning empty array');
+      return [];
+    }
     const sheets = google.sheets({ version: 'v4', auth });
 
     const response = await sheets.spreadsheets.values.get({
@@ -76,6 +89,9 @@ export async function addNewsToSheets(news: {
 }) {
   try {
     const auth = getAuthClient();
+    if (!auth || !process.env.NEWS_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
     const sheets = google.sheets({ version: 'v4', auth });
 
     // 既存のデータ数を取得してIDを自動生成
@@ -115,6 +131,9 @@ export async function updateNewsInSheets(
 ) {
   try {
     const auth = getAuthClient();
+    if (!auth || !process.env.NEWS_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
     const sheets = google.sheets({ version: 'v4', auth });
 
     // IDに対応する行を見つける
@@ -153,6 +172,9 @@ export async function updateNewsInSheets(
 export async function deleteNewsFromSheets(id: string) {
   try {
     const auth = getAuthClient();
+    if (!auth || !process.env.NEWS_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
     const sheets = google.sheets({ version: 'v4', auth });
 
     // IDに対応する行を見つける

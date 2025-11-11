@@ -5,8 +5,15 @@ import MemberSection from '@/components/MemberSection';
 
 export default async function Home() {
   // Google Sheetsからニュースデータを取得（最新3件）
-  const allNews = await getNewsFromSheets();
-  const latestNews = allNews.slice(0, 3);
+  let latestNews = [];
+  try {
+    const allNews = await getNewsFromSheets();
+    latestNews = allNews.slice(0, 3);
+  } catch (error) {
+    console.error('Failed to fetch news:', error);
+    // エラーが発生しても空の配列で続行
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* ヒーローセクション */}
