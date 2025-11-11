@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import EditButton from './EditButton';
+import MobileEditButton from './MobileEditButton';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -107,6 +108,9 @@ export default function Header() {
               >
                 ブログ
               </a>
+              <div className="pt-4 mt-4 border-t border-gray-200">
+                <MobileEditButton onMenuClose={() => setIsMenuOpen(false)} />
+              </div>
             </div>
           </div>
         )}

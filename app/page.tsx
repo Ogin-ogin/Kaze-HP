@@ -1,6 +1,7 @@
 import NewsCard from '@/components/NewsCard';
 import Link from 'next/link';
 import { getNewsFromSheets } from '@/lib/googleSheets';
+import MemberSection from '@/components/MemberSection';
 
 export default async function Home() {
   // Google Sheetsからニュースデータを取得（最新3件）
@@ -87,7 +88,7 @@ export default async function Home() {
       </section>
 
       {/* 練習情報セクション */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
         <div className="bg-white border border-gray-200 rounded-lg p-8">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">練習日時</h3>
           <p className="text-gray-700 leading-relaxed">
@@ -110,6 +111,9 @@ export default async function Home() {
           </Link>
         </div>
       </section>
+
+      {/* 団員向けセクション */}
+      <MemberSection />
     </div>
   );
 }
