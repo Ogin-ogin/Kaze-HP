@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import EditButton from './EditButton';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,6 +64,7 @@ export default function Header() {
               >
                 ブログ
               </a>
+              <EditButton />
             </div>
           </div>
 

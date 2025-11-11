@@ -1,57 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { getConcertsFromSheets } from '@/lib/googleSheets';
 
-// サンプル演奏会データ（後でGoogle Sheetsから取得）
-const concerts = [
-  {
-    id: '48',
-    title: '第48回おかあさんコーラス全国大会',
-    date: '2025年8月',
-    location: '山形県民やまぎんホール',
-    thumbnail: '',
-    award: 'ひまわり賞受賞',
-  },
-  {
-    id: '47',
-    title: 'おかあさんコーラス九州大会',
-    date: '2025年6月',
-    location: '鹿児島県民ホール',
-    thumbnail: '',
-    award: '篤姫賞受賞',
-  },
-  {
-    id: '46',
-    title: 'レディースコーラスフェスティバル',
-    date: '2025年3月',
-    location: '響ホール',
-    thumbnail: '',
-  },
-  {
-    id: '45',
-    title: 'おかあさんコーラス九州大会',
-    date: '2024年6月',
-    location: '沖縄コンベンションセンター',
-    thumbnail: '',
-    award: '選考委員奨励賞受賞',
-  },
-  {
-    id: '44',
-    title: 'レディースコーラスフェスティバル',
-    date: '2024年3月',
-    location: '戸畑市民会館',
-    thumbnail: '',
-  },
-  {
-    id: '43',
-    title: 'おかあさんコーラス九州大会',
-    date: '2023年6月',
-    location: '佐賀市文化会館',
-    thumbnail: '',
-    award: 'バルーン賞受賞',
-  },
-];
-
-export default function ConcertsPage() {
+export default async function ConcertsPage() {
+  // Google Sheetsから演奏会データを取得
+  const concerts = await getConcertsFromSheets();
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-4xl font-bold text-gray-900 mb-4">風の演奏会史</h1>
@@ -61,7 +14,8 @@ export default function ConcertsPage() {
 
       {/* ギャラリービュー */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {concerts.map((concert) => (
+        {concerts.length > 0 ? (
+          concerts.map((concert) => (
           <Link
             key={concert.id}
             href={`/concerts/${concert.id}`}
@@ -112,7 +66,12 @@ export default function ConcertsPage() {
               )}
             </div>
           </Link>
-        ))}
+          ))
+        ) : (
+          <div className="col-span-3 text-center py-12 text-gray-500">
+            演奏会情報がありません
+          </div>
+        )}
       </div>
 
       {/* 設定ガイド */}
