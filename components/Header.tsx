@@ -33,16 +33,16 @@ export default function Header() {
         <div className="flex justify-between items-center h-11">
           {/* ロゴ */}
           <Link href="/" className="flex items-center">
-            <span className="text-lg font-medium text-[#1d1d1f]">女声コーラス 風</span>
+            <span className="text-xl font-medium text-[#1d1d1f]">女声コーラス 風</span>
           </Link>
 
           {/* デスクトップナビゲーション */}
-          <div className="hidden lg:flex items-center space-x-7">
+          <div className="hidden lg:flex items-center space-x-8">
             {mainNavigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-xs font-normal text-[#1d1d1f] hover:text-[#06c] transition-colors"
+                className="text-sm font-normal text-[#1d1d1f] hover:text-[#06c] transition-colors"
               >
                 {item.name}
               </Link>
@@ -50,26 +50,28 @@ export default function Header() {
 
             {/* 「私たちについて」ドロップダウン */}
             <div
-              className="relative"
+              className="relative group"
               onMouseEnter={() => setIsAboutOpen(true)}
               onMouseLeave={() => setIsAboutOpen(false)}
             >
-              <button className="text-xs font-normal text-[#1d1d1f] hover:text-[#06c] transition-colors flex items-center">
+              <button className="text-sm font-normal text-[#1d1d1f] hover:text-[#06c] transition-colors flex items-center py-2">
                 私たちについて
-                <ChevronDown className="w-3 h-3 ml-1" />
+                <ChevronDown className="w-3.5 h-3.5 ml-1" />
               </button>
 
               {isAboutOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2">
-                  {aboutDropdown.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="block px-4 py-2 text-xs text-[#1d1d1f] hover:bg-gray-50 transition-colors"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-0 pt-2">
+                  <div className="w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2">
+                    {aboutDropdown.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="block px-4 py-2 text-sm text-[#1d1d1f] hover:bg-gray-50 transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -79,7 +81,7 @@ export default function Header() {
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-[#06c] hover:underline"
+              className="text-sm text-[#06c] hover:underline"
             >
               Instagram
             </a>
@@ -87,7 +89,7 @@ export default function Header() {
               href={blogUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-[#06c] hover:underline"
+              className="text-sm text-[#06c] hover:underline"
             >
               ブログ
             </a>

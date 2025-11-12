@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { Plus, Edit, Trash2, X } from 'lucide-react';
+import ImageUpload from '@/components/ImageUpload';
 
 interface ConcertItem {
   id: string;
@@ -260,17 +261,23 @@ export default function AdminConcertsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  サムネイルURL
-                </label>
-                <input
-                  type="url"
-                  value={formData.thumbnail}
-                  onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pastel-blue-500 focus:border-pastel-blue-500"
-                  placeholder="https://example.com/image.jpg"
-                  required
+                <ImageUpload
+                  currentImageUrl={formData.thumbnail}
+                  onImageUploaded={(url) => setFormData({ ...formData, thumbnail: url })}
+                  label="サムネイル画像"
                 />
+                <div className="mt-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    または画像URLを直接入力
+                  </label>
+                  <input
+                    type="url"
+                    value={formData.thumbnail}
+                    onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pastel-blue-500 focus:border-pastel-blue-500"
+                    placeholder="https://example.com/image.jpg"
+                  />
+                </div>
               </div>
 
               <div>
