@@ -158,7 +158,7 @@ export default function RecruitmentPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-block px-8 py-4 bg-pastel-blue-600 text-white text-lg font-medium rounded-full hover:bg-pastel-blue-700 transition-all"
+            className="btn-apple-primary inline-block"
           >
             応募はこちらから
           </Link>

@@ -58,7 +58,7 @@ export default function ContactPage() {
             href={googleFormUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 py-4 bg-pastel-blue-600 text-white text-lg font-medium rounded-full hover:bg-pastel-blue-700 transition-all"
+            className="btn-apple-primary inline-block"
           >
             お問い合わせフォームを開く
           </a>

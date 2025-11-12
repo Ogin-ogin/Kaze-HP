@@ -44,33 +44,44 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Apple-style カスタムイージング */
+:root {
+  --ease-in-out-apple: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-out-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --ease-in-apple: cubic-bezier(0.42, 0, 1, 1);
+}
+
 /* カスタムアニメーション */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translate3d(0, 20px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
   }
-  50% {
-    transform: translateY(-10px);
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
   }
-  100% {
-    background-position: 1000px 0;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -90,4 +101,74 @@ html {
 
 .shadow-apple {
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-elevated {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Apple-style ボタン */
+.btn-apple-primary {
+  padding: 12px 24px;
+  background: #0071e3;
+  color: white;
+  border-radius: 980px;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.17648;
+  transition: all 0.3s var(--ease-in-out-apple);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-apple-primary:hover {
+  background: #0077ed;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+.btn-apple-secondary {
+  padding: 12px 24px;
+  background: transparent;
+  color: #0071e3;
+  border-radius: 980px;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.17648;
+  transition: all 0.3s var(--ease-in-out-apple);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-apple-secondary:hover {
+  text-decoration: underline;
+  color: #0077ed;
+}
+
+/* Apple-style カード */
+.card-apple {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-in-out-apple);
+  will-change: transform;
+}
+
+.card-apple:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* スムーズスクロールアニメーション */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+  transition: opacity 0.8s var(--ease-out-apple), transform 0.8s var(--ease-out-apple);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }

@@ -26,19 +26,19 @@ export default function MemberSection() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Link
                 href="/admin/news"
-                className="px-6 py-4 bg-pastel-blue-600 text-white text-center rounded-full hover:bg-pastel-blue-700 transition-all font-medium"
+                className="btn-apple-primary text-center"
               >
                 ニュースを編集
               </Link>
               <Link
                 href="/admin/concerts"
-                className="px-6 py-4 bg-pastel-blue-600 text-white text-center rounded-full hover:bg-pastel-blue-700 transition-all font-medium"
+                className="btn-apple-primary text-center"
               >
                 演奏会史を編集
               </Link>
               <Link
                 href="/admin/history"
-                className="px-6 py-4 bg-pastel-blue-600 text-white text-center rounded-full hover:bg-pastel-blue-700 transition-all font-medium"
+                className="btn-apple-primary text-center"
               >
                 活動実績を編集
               </Link>
@@ -59,7 +59,7 @@ export default function MemberSection() {
             </p>
             <button
               onClick={() => setIsLoginModalOpen(true)}
-              className="px-8 py-4 bg-pastel-blue-600 text-white rounded-full hover:bg-pastel-blue-700 transition-all font-medium"
+              className="btn-apple-primary"
             >
               団員ログイン
             </button>

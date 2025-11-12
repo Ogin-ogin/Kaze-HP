@@ -30,15 +30,15 @@ export default async function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/recruitment"
-                className="px-8 py-4 bg-pastel-blue-600 text-white rounded-full hover:bg-pastel-blue-700 transition-all text-lg font-medium"
+                className="btn-apple-primary inline-block"
               >
                 団員募集中
               </Link>
               <Link
                 href="/about"
-                className="text-[#06c] hover:underline text-lg font-medium"
+                className="btn-apple-secondary inline-block"
               >
-                詳しく見る →
+                詳しく見る
               </Link>
             </div>
           </div>
@@ -123,7 +123,7 @@ export default async function Home() {
             </p>
             <Link
               href="/contact"
-              className="inline-block px-8 py-4 bg-pastel-blue-600 text-white rounded-full hover:bg-pastel-blue-700 transition-all font-medium"
+              className="btn-apple-primary inline-block"
             >
               お問い合わせ
             </Link>
