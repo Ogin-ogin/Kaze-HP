@@ -10,8 +10,8 @@ interface NewsCardProps {
 
 export default function NewsCard({ id, title, thumbnail, date }: NewsCardProps) {
   return (
-    <Link href={`/news/${id}`} className="group">
-      <div className="bg-white/80 backdrop-blur-sm rounded-xl overflow-hidden border border-pastel-blue-100 hover:shadow-soft-lg hover:scale-[1.02] hover:border-pastel-blue-300 transition-all duration-300">
+    <Link href={`/news/${id}`} className="group block">
+      <div className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-apple transition-all duration-200">
         {/* サムネイル画像 */}
         <div className="relative w-full h-48 bg-pastel-blue-50">
           {thumbnail ? (
@@ -29,9 +29,9 @@ export default function NewsCard({ id, title, thumbnail, date }: NewsCardProps) 
         </div>
 
         {/* コンテンツ */}
-        <div className="p-4">
-          <p className="text-xs text-gray-500 mb-2">{date}</p>
-          <h3 className="text-base font-medium text-gray-900 line-clamp-2 group-hover:text-pastel-blue-600 transition-colors">
+        <div className="p-6">
+          <p className="text-xs text-gray-400 mb-3 uppercase tracking-wide">{date}</p>
+          <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-gray-600 transition-colors">
             {title}
           </h3>
         </div>

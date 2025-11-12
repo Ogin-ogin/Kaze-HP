@@ -24,28 +24,28 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-pastel-blue-100 shadow-soft">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-100">
+      <nav className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-14">
           {/* ロゴ */}
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-gray-900">女声コーラス 風</span>
+          <Link href="/" className="flex items-center">
+            <span className="text-xl font-semibold text-gray-900 tracking-tight">女声コーラス 風</span>
           </Link>
 
           {/* デスクトップナビゲーション */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="px-3 py-2 text-sm text-gray-700 hover:bg-pastel-blue-50 hover:text-pastel-blue-700 rounded-md transition-colors"
+                className="text-sm font-normal text-gray-600 hover:text-gray-900 transition-colors"
               >
                 {item.name}
               </Link>
             ))}
 
             {/* 外部リンク */}
-            <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
+            <div className="flex items-center space-x-8 ml-8 pl-8 border-l border-gray-200">
               <a
                 href={instagramUrl}
                 target="_blank"
@@ -61,12 +61,12 @@ export default function Header() {
                 href={blogUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-2 text-sm text-gray-700 hover:bg-pastel-blue-50 hover:text-pastel-blue-700 rounded-md transition-colors"
+                className="text-sm font-normal text-gray-600 hover:text-gray-900 transition-colors"
               >
                 ブログ
               </a>
-              <EditButton />
             </div>
+            <EditButton />
           </div>
 
           {/* モバイルメニューボタン */}

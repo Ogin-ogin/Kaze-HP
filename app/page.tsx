@@ -17,37 +17,37 @@ export default async function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* ヒーローセクション */}
-      <section className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+      <section className="text-center mb-24 pt-12">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-gray-900 mb-8 tracking-tight">
           女声コーラス 風
         </h1>
-        <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
+        <p className="text-xl md:text-2xl text-gray-500 mb-12 leading-relaxed max-w-2xl mx-auto font-light">
           心を込めて歌を届ける。<br />
           それが私たちの願いです。
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
             href="/recruitment"
-            className="px-8 py-3 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors text-lg font-medium shadow-sm"
+            className="px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-200 text-base font-medium"
           >
             団員募集中
           </Link>
           <Link
             href="/about"
-            className="px-8 py-3 bg-white text-pastel-blue-700 border border-pastel-blue-400 rounded-lg hover:bg-pastel-blue-50 transition-colors text-lg font-medium"
+            className="px-8 py-3 text-gray-900 hover:text-gray-600 transition-colors text-base font-medium"
           >
-            詳しく見る
+            詳しく見る →
           </Link>
         </div>
       </section>
 
       {/* ニュースセクション */}
-      <section className="mb-16">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">ニュース</h2>
+      <section className="mb-24">
+        <div className="flex justify-between items-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight">ニュース</h2>
           <Link
             href="/news"
-            className="text-pastel-blue-600 hover:text-pastel-blue-700 font-medium"
+            className="text-gray-600 hover:text-gray-900 font-normal transition-colors"
           >
             すべて見る →
           </Link>
@@ -74,8 +74,8 @@ export default async function Home() {
       </section>
 
       {/* 団体紹介セクション */}
-      <section className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-16 shadow-soft border border-pastel-blue-100">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">私たちについて</h2>
+      <section className="bg-white rounded-3xl p-12 md:p-16 mb-24 shadow-apple">
+        <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-8 tracking-tight">私たちについて</h2>
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-700 leading-relaxed mb-4">
             やさしいうた声は 大きな思いやりに<br />
@@ -95,24 +95,24 @@ export default async function Home() {
       </section>
 
       {/* 練習情報セクション */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        <div className="bg-white/80 backdrop-blur-sm border border-pastel-blue-100 rounded-xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">練習日時</h3>
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
+        <div className="bg-white rounded-3xl p-10 shadow-apple">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-4 tracking-tight">練習日時</h3>
           <p className="text-gray-700 leading-relaxed">
             毎週木曜日 10:00-13:00<br />
             練習場所：北九州市八幡西区黒崎「コムシティ」ほか
           </p>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-sm border border-pastel-blue-100 rounded-xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">お問い合わせ</h3>
+        <div className="bg-white rounded-3xl p-10 shadow-apple">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-4 tracking-tight">お問い合わせ</h3>
           <p className="text-gray-700 leading-relaxed mb-4">
             見学・体験練習は随時受け付けています。<br />
             お気軽にお問い合わせください。
           </p>
           <Link
             href="/contact"
-            className="inline-block px-6 py-2 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors font-medium shadow-sm"
+            className="inline-block px-6 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-200 font-medium text-sm"
           >
             お問い合わせ
           </Link>
