@@ -355,3 +355,160 @@ export async function deleteConcertFromSheets(id: string) {
     return { success: false, error };
   }
 }
+
+// 活動実績データを取得
+export async function getHistoryFromSheets() {
+  try {
+    const auth = getAuthClient();
+    if (!auth || !process.env.HISTORY_SPREADSHEET_ID) {
+      console.warn('Google Sheets API not configured, returning empty array');
+      return [];
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.HISTORY_SPREADSHEET_ID,
+      range: 'Sheet1!A2:C', // A列: ID, B列: 日付, C列: イベント
+    });
+
+    const rows = response.data.values || [];
+
+    return rows.map((row) => ({
+      id: row[0] || '',
+      date: row[1] || '',
+      event: row[2] || '',
+    }));
+  } catch (error) {
+    console.error('Error fetching history from Google Sheets:', error);
+    return [];
+  }
+}
+
+// 活動実績データを追加
+export async function addHistoryToSheets(history: {
+  date: string;
+  event: string;
+}) {
+  try {
+    const auth = getAuthClient();
+    if (!auth || !process.env.HISTORY_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.HISTORY_SPREADSHEET_ID,
+      range: 'Sheet1!A:A',
+    });
+
+    const rows = response.data.values || [];
+    const newId = String(rows.length);
+
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: process.env.HISTORY_SPREADSHEET_ID,
+      range: 'Sheet1!A:C',
+      valueInputOption: 'RAW',
+      requestBody: {
+        values: [[newId, history.date, history.event]],
+      },
+    });
+
+    return { success: true, id: newId };
+  } catch (error) {
+    console.error('Error adding history to Google Sheets:', error);
+    return { success: false, error };
+  }
+}
+
+// 活動実績データを更新
+export async function updateHistoryInSheets(
+  id: string,
+  history: {
+    date: string;
+    event: string;
+  }
+) {
+  try {
+    const auth = getAuthClient();
+    if (!auth || !process.env.HISTORY_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.HISTORY_SPREADSHEET_ID,
+      range: 'Sheet1!A:A',
+    });
+
+    const rows = response.data.values || [];
+    const rowIndex = rows.findIndex((row) => row[0] === id);
+
+    if (rowIndex === -1) {
+      return { success: false, error: 'History not found' };
+    }
+
+    const rowNumber = rowIndex + 2;
+
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: process.env.HISTORY_SPREADSHEET_ID,
+      range: `Sheet1!B${rowNumber}:C${rowNumber}`,
+      valueInputOption: 'RAW',
+      requestBody: {
+        values: [[history.date, history.event]],
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating history in Google Sheets:', error);
+    return { success: false, error };
+  }
+}
+
+// 活動実績データを削除
+export async function deleteHistoryFromSheets(id: string) {
+  try {
+    const auth = getAuthClient();
+    if (!auth || !process.env.HISTORY_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.HISTORY_SPREADSHEET_ID,
+      range: 'Sheet1!A:A',
+    });
+
+    const rows = response.data.values || [];
+    const rowIndex = rows.findIndex((row) => row[0] === id);
+
+    if (rowIndex === -1) {
+      return { success: false, error: 'History not found' };
+    }
+
+    const rowNumber = rowIndex + 1;
+
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId: process.env.HISTORY_SPREADSHEET_ID,
+      requestBody: {
+        requests: [
+          {
+            deleteDimension: {
+              range: {
+                sheetId: 0,
+                dimension: 'ROWS',
+                startIndex: rowNumber,
+                endIndex: rowNumber + 1,
+              },
+            },
+          },
+        ],
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error deleting history from Google Sheets:', error);
+    return { success: false, error };
+  }
+}

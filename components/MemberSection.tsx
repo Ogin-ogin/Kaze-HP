@@ -23,7 +23,7 @@ export default function MemberSection() {
             <p className="text-gray-700 leading-relaxed">
               ログイン済みです。ニュースや演奏会情報を編集できます。
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <Link
                 href="/admin/news"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors font-medium shadow-sm"
@@ -38,9 +38,16 @@ export default function MemberSection() {
                 <Edit2 className="w-5 h-5" />
                 演奏会史を編集
               </Link>
+              <Link
+                href="/admin/history"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors font-medium shadow-sm"
+              >
+                <Edit2 className="w-5 h-5" />
+                活動実績を編集
+              </Link>
               <button
                 onClick={logout}
-                className="px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                className="px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium sm:col-span-2 lg:col-span-3"
               >
                 ログアウト
               </button>
