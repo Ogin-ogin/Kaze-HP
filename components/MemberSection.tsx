@@ -31,6 +31,13 @@ export default function MemberSection() {
                 <Edit2 className="w-5 h-5" />
                 ニュースを編集
               </Link>
+              <Link
+                href="/admin/concerts"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors font-medium shadow-sm"
+              >
+                <Edit2 className="w-5 h-5" />
+                演奏会史を編集
+              </Link>
               <button
                 onClick={logout}
                 className="px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"

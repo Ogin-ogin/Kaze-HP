@@ -217,3 +217,141 @@ export async function deleteNewsFromSheets(id: string) {
     return { success: false, error };
   }
 }
+
+// 演奏会データを追加
+export async function addConcertToSheets(concert: {
+  title: string;
+  date: string;
+  location: string;
+  thumbnail: string;
+  award: string;
+  detail: string;
+}) {
+  try {
+    const auth = getAuthClient();
+    if (!auth || !process.env.CONCERTS_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    // 既存のデータ数を取得してIDを自動生成
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.CONCERTS_SPREADSHEET_ID,
+      range: 'Sheet1!A:A',
+    });
+
+    const rows = response.data.values || [];
+    const newId = String(rows.length);
+
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: process.env.CONCERTS_SPREADSHEET_ID,
+      range: 'Sheet1!A:G',
+      valueInputOption: 'RAW',
+      requestBody: {
+        values: [[newId, concert.title, concert.date, concert.location, concert.thumbnail, concert.award, concert.detail]],
+      },
+    });
+
+    return { success: true, id: newId };
+  } catch (error) {
+    console.error('Error adding concert to Google Sheets:', error);
+    return { success: false, error };
+  }
+}
+
+// 演奏会データを更新
+export async function updateConcertInSheets(
+  id: string,
+  concert: {
+    title: string;
+    date: string;
+    location: string;
+    thumbnail: string;
+    award: string;
+    detail: string;
+  }
+) {
+  try {
+    const auth = getAuthClient();
+    if (!auth || !process.env.CONCERTS_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.CONCERTS_SPREADSHEET_ID,
+      range: 'Sheet1!A:A',
+    });
+
+    const rows = response.data.values || [];
+    const rowIndex = rows.findIndex((row) => row[0] === id);
+
+    if (rowIndex === -1) {
+      return { success: false, error: 'Concert not found' };
+    }
+
+    const rowNumber = rowIndex + 2;
+
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: process.env.CONCERTS_SPREADSHEET_ID,
+      range: `Sheet1!B${rowNumber}:G${rowNumber}`,
+      valueInputOption: 'RAW',
+      requestBody: {
+        values: [[concert.title, concert.date, concert.location, concert.thumbnail, concert.award, concert.detail]],
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating concert in Google Sheets:', error);
+    return { success: false, error };
+  }
+}
+
+// 演奏会データを削除
+export async function deleteConcertFromSheets(id: string) {
+  try {
+    const auth = getAuthClient();
+    if (!auth || !process.env.CONCERTS_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.CONCERTS_SPREADSHEET_ID,
+      range: 'Sheet1!A:A',
+    });
+
+    const rows = response.data.values || [];
+    const rowIndex = rows.findIndex((row) => row[0] === id);
+
+    if (rowIndex === -1) {
+      return { success: false, error: 'Concert not found' };
+    }
+
+    const rowNumber = rowIndex + 1;
+
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId: process.env.CONCERTS_SPREADSHEET_ID,
+      requestBody: {
+        requests: [
+          {
+            deleteDimension: {
+              range: {
+                sheetId: 0,
+                dimension: 'ROWS',
+                startIndex: rowNumber,
+                endIndex: rowNumber + 1,
+              },
+            },
+          },
+        ],
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error deleting concert from Google Sheets:', error);
+    return { success: false, error };
+  }
+}
