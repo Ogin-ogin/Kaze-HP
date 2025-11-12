@@ -11,7 +11,7 @@ interface NewsCardProps {
 export default function NewsCard({ id, title, thumbnail, date }: NewsCardProps) {
   return (
     <Link href={`/news/${id}`} className="group">
-      <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg hover:border-pastel-blue-300 transition-all">
+      <div className="bg-white/80 backdrop-blur-sm rounded-xl overflow-hidden border border-pastel-blue-100 hover:shadow-soft-lg hover:scale-[1.02] hover:border-pastel-blue-300 transition-all duration-300">
         {/* サムネイル画像 */}
         <div className="relative w-full h-48 bg-pastel-blue-50">
           {thumbnail ? (

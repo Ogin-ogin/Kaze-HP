@@ -74,7 +74,7 @@ export default async function Home() {
       </section>
 
       {/* 団体紹介セクション */}
-      <section className="bg-gray-50 rounded-lg p-8 md:p-12 mb-16">
+      <section className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-16 shadow-soft border border-pastel-blue-100">
         <h2 className="text-3xl font-bold text-gray-900 mb-6">私たちについて</h2>
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-700 leading-relaxed mb-4">
@@ -96,7 +96,7 @@ export default async function Home() {
 
       {/* 練習情報セクション */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        <div className="bg-white border border-gray-200 rounded-lg p-8">
+        <div className="bg-white/80 backdrop-blur-sm border border-pastel-blue-100 rounded-xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">練習日時</h3>
           <p className="text-gray-700 leading-relaxed">
             毎週木曜日 10:00-13:00<br />
@@ -104,7 +104,7 @@ export default async function Home() {
           </p>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-8">
+        <div className="bg-white/80 backdrop-blur-sm border border-pastel-blue-100 rounded-xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">お問い合わせ</h3>
           <p className="text-gray-700 leading-relaxed mb-4">
             見学・体験練習は随時受け付けています。<br />

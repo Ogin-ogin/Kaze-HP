@@ -12,7 +12,7 @@ export default function MemberSection() {
 
   return (
     <>
-      <section className="bg-gradient-to-br from-pastel-blue-50 to-white border border-pastel-blue-200 rounded-lg p-8 md:p-12">
+      <section className="bg-gradient-to-br from-pastel-blue-50/80 to-white/80 backdrop-blur-sm border border-pastel-blue-200 rounded-2xl p-8 md:p-12 shadow-soft-lg">
         <div className="flex items-center gap-3 mb-6">
           <Lock className="w-6 h-6 text-pastel-blue-600" />
           <h2 className="text-3xl font-bold text-gray-900">団員の方へ</h2>
@@ -26,28 +26,28 @@ export default function MemberSection() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <Link
                 href="/admin/news"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors font-medium shadow-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-pastel-blue-500 to-pastel-blue-600 text-white rounded-xl hover:from-pastel-blue-600 hover:to-pastel-blue-700 transition-all duration-300 font-medium shadow-soft hover:shadow-soft-lg hover:scale-105"
               >
                 <Edit2 className="w-5 h-5" />
                 ニュースを編集
               </Link>
               <Link
                 href="/admin/concerts"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors font-medium shadow-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-pastel-blue-500 to-pastel-blue-600 text-white rounded-xl hover:from-pastel-blue-600 hover:to-pastel-blue-700 transition-all duration-300 font-medium shadow-soft hover:shadow-soft-lg hover:scale-105"
               >
                 <Edit2 className="w-5 h-5" />
                 演奏会史を編集
               </Link>
               <Link
                 href="/admin/history"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors font-medium shadow-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-pastel-blue-500 to-pastel-blue-600 text-white rounded-xl hover:from-pastel-blue-600 hover:to-pastel-blue-700 transition-all duration-300 font-medium shadow-soft hover:shadow-soft-lg hover:scale-105"
               >
                 <Edit2 className="w-5 h-5" />
                 活動実績を編集
               </Link>
               <button
                 onClick={logout}
-                className="px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium sm:col-span-2 lg:col-span-3"
+                className="px-6 py-3 bg-white/80 backdrop-blur-sm text-gray-700 border border-pastel-blue-200 rounded-xl hover:bg-pastel-blue-50 hover:border-pastel-blue-300 transition-all duration-300 font-medium sm:col-span-2 lg:col-span-3 shadow-soft hover:shadow-soft-lg"
               >
                 ログアウト
               </button>
@@ -60,7 +60,7 @@ export default function MemberSection() {
             </p>
             <button
               onClick={() => setIsLoginModalOpen(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-pastel-blue-500 text-white rounded-lg hover:bg-pastel-blue-600 transition-colors font-medium shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pastel-blue-500 to-pastel-blue-600 text-white rounded-xl hover:from-pastel-blue-600 hover:to-pastel-blue-700 transition-all duration-300 font-medium shadow-soft hover:shadow-soft-lg hover:scale-105"
             >
               <Lock className="w-5 h-5" />
               団員ログイン

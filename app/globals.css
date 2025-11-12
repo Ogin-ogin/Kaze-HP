@@ -37,7 +37,52 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #F0F8FC 0%, #ffffff 50%, #D4E8F5 100%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* カスタムアニメーション */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* スムーズスクロール */
+html {
+  scroll-behavior: smooth;
+}
+
+/* カスタムシャドウ */
+.shadow-soft {
+  box-shadow: 0 2px 15px -3px rgba(137, 207, 240, 0.1), 0 10px 20px -2px rgba(137, 207, 240, 0.05);
+}
+
+.shadow-soft-lg {
+  box-shadow: 0 10px 40px -10px rgba(137, 207, 240, 0.2), 0 20px 25px -5px rgba(137, 207, 240, 0.1);
 }

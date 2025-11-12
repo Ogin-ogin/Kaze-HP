@@ -19,7 +19,7 @@ export default async function ConcertsPage() {
           <Link
             key={concert.id}
             href={`/concerts/${concert.id}`}
-            className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all"
+            className="group bg-white/80 backdrop-blur-sm border border-pastel-blue-100 rounded-xl overflow-hidden hover:shadow-soft-lg hover:scale-[1.02] transition-all duration-300"
           >
             {/* サムネイル画像 */}
             <div className="relative w-full h-64 bg-gradient-to-br from-blue-100 to-blue-50">
@@ -74,25 +74,6 @@ export default async function ConcertsPage() {
         )}
       </div>
 
-      {/* 設定ガイド */}
-      <div className="mt-16 bg-pastel-blue-50 p-8 rounded-lg border-l-4 border-pastel-blue-500">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">演奏会情報の追加方法</h2>
-        <p className="text-gray-700 mb-4">
-          演奏会情報はGoogle Sheetsで管理し、パンフレットやポスターの画像はGoogle Driveに保存します。
-        </p>
-        <div className="bg-white p-6 rounded-lg">
-          <h3 className="font-semibold text-gray-900 mb-3">Google Sheetsの列構成：</h3>
-          <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
-            <li>ID（演奏会の識別番号）</li>
-            <li>タイトル（演奏会名）</li>
-            <li>日付（YYYY年M月形式）</li>
-            <li>場所（会場名）</li>
-            <li>サムネイル画像URL（Google DriveのPublic URL）</li>
-            <li>受賞（あれば）</li>
-            <li>詳細（演奏曲目、写真など）</li>
-          </ul>
-        </div>
-      </div>
     </div>
   );
 }
