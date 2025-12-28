@@ -541,7 +541,7 @@ export async function getPageContentsFromSheets() {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'News!A2:E', // A: page, B: section, C: field, D: value, E: type
+      range: 'PageContents!A2:E', // A: page, B: section, C: field, D: value, E: type
     });
 
     const rows = response.data.values || [];
