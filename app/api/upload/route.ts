@@ -39,10 +39,10 @@ export async function POST(request: NextRequest) {
     const imageUrl = await uploadImageToDrive(buffer, fileName, file.type);
 
     return NextResponse.json({ url: imageUrl });
-  } catch (error) {
+  } catch (error: any) {
     console.error('画像アップロードエラー:', error);
     return NextResponse.json(
-      { error: '画像のアップロードに失敗しました' },
+      { error: error.message || '画像のアップロードに失敗しました' },
       { status: 500 }
     );
   }

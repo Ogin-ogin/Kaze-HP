@@ -69,7 +69,8 @@ export default function HeroSection() {
         throw new Error('更新に失敗しました');
       }
     } catch (error: any) {
-      alert(`画像のアップロードに失敗しました: ${error.message}\n\n代わりにURLを直接入力してください。`);
+      const errorMessage = error.message || '画像のアップロードに失敗しました';
+      alert(`${errorMessage}\n\n「URLで指定」ボタンをクリックして、画像のURLを直接入力してください。\n\n例: https://example.com/image.jpg`);
       setShowUrlInput(true);
       console.error('アップロードエラー:', error);
     } finally {
