@@ -1,6 +1,9 @@
 import NewsCard from '@/components/NewsCard';
 import { getNewsFromSheets } from '@/lib/googleSheets';
 
+// 動的レンダリングを強制（ニュースを毎回取得）
+export const dynamic = 'force-dynamic';
+
 export default async function NewsPage() {
   // Google Sheetsからニュースデータを取得
   const allNews = await getNewsFromSheets();

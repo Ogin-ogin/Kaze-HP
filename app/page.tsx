@@ -2,16 +2,19 @@ import NewsCard from '@/components/NewsCard';
 import Link from 'next/link';
 import { getNewsFromSheets } from '@/lib/googleSheets';
 import MemberSection from '@/components/MemberSection';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 
 // クライアントコンポーネントを動的インポート
-const HeroSection = dynamic(() => import('@/components/home/HeroSection'), {
+const HeroSection = dynamicImport(() => import('@/components/home/HeroSection'), {
   ssr: true,
 });
 
-const AboutSection = dynamic(() => import('@/components/home/AboutSection'), {
+const AboutSection = dynamicImport(() => import('@/components/home/AboutSection'), {
   ssr: true,
 });
+
+// 動的レンダリングを強制（ニュースを毎回取得）
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   // Google Sheetsからニュースデータを取得（最新3件）

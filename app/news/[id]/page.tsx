@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getNewsFromSheets } from '@/lib/googleSheets';
-import Image from 'next/image';
+
+// 動的レンダリングを強制
+export const dynamic = 'force-dynamic';
 
 export default async function NewsDetailPage({ params }: { params: Promise<{ id: string }> }) {
   // paramsを解決

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface NewsCardProps {
   id: string;
@@ -14,11 +13,10 @@ export default function NewsCard({ id, title, thumbnail, date }: NewsCardProps) 
       {/* サムネイル画像 */}
       <div className="relative w-full h-56 bg-pastel-blue-50 overflow-hidden">
         {thumbnail ? (
-          <Image
+          <img
             src={thumbnail}
             alt={title}
-            fill
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             style={{ willChange: 'transform' }}
           />
         ) : (
