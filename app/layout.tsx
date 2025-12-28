@@ -51,6 +51,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://kaze-hp.vercel.app",
   },
+  verification: {
+    google: "0F-kGePMK8vTpnU9fzPOiFoouTTN6owmVO1acWBvre4",
+  },
 };
 
 export default function RootLayout({
