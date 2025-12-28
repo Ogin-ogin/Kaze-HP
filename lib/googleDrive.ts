@@ -26,7 +26,7 @@ export async function uploadImageToDrive(
 ): Promise<string> {
   const auth = getAuthClient();
   if (!auth || !process.env.GOOGLE_DRIVE_FOLDER_ID) {
-    throw new Error('Google Drive not configured');
+    throw new Error('Google Drive not configured. Please set GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, and GOOGLE_DRIVE_FOLDER_ID in your environment variables.');
   }
 
   const drive = google.drive({ version: 'v3', auth });

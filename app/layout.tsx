@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { EditModeProvider } from "@/contexts/EditModeContext";
 
 const notoSansJP = Noto_Sans_JP({
   weight: ['400', '500', '700'],
@@ -27,11 +28,13 @@ export default function RootLayout({
         className={`${notoSansJP.variable} font-sans antialiased`}
       >
         <AuthProvider>
-          <Header />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
+          <EditModeProvider>
+            <Header />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+          </EditModeProvider>
         </AuthProvider>
       </body>
     </html>

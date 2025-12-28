@@ -1,3 +1,5 @@
+import MemberSection from '@/components/MemberSection';
+
 export default function SchedulePage() {
   const calendarEmbedUrl = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_EMBED_URL || '';
 
@@ -87,6 +89,13 @@ export default function SchedulePage() {
           </div>
         </div>
       </section>
+
+      {/* 団員向けセクション */}
+      <div className="bg-gray-50 py-24">
+        <div className="max-w-[980px] mx-auto px-4 sm:px-6">
+          <MemberSection />
+        </div>
+      </div>
     </div>
   );
 }

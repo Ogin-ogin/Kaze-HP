@@ -512,3 +512,103 @@ export async function deleteHistoryFromSheets(id: string) {
     return { success: false, error };
   }
 }
+
+// ページコンテンツのデータ型
+export type PageContent = {
+  page: string;
+  section: string;
+  field: string;
+  value: string;
+  type: 'text' | 'image' | 'richtext';
+};
+
+// ページコンテンツをすべて取得
+export async function getPageContentsFromSheets() {
+  try {
+    const auth = getAuthClient();
+    if (!auth || !process.env.PAGE_CONTENTS_SPREADSHEET_ID) {
+      console.warn('Page contents Google Sheets API not configured, returning empty array');
+      return [];
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.PAGE_CONTENTS_SPREADSHEET_ID,
+      range: 'Sheet1!A2:E', // A: page, B: section, C: field, D: value, E: type
+    });
+
+    const rows = response.data.values || [];
+
+    return rows.map((row) => ({
+      page: row[0] || '',
+      section: row[1] || '',
+      field: row[2] || '',
+      value: row[3] || '',
+      type: (row[4] || 'text') as 'text' | 'image' | 'richtext',
+    }));
+  } catch (error) {
+    console.error('Error fetching page contents from Google Sheets:', error);
+    return [];
+  }
+}
+
+// 特定ページのコンテンツを取得
+export async function getPageContentByPage(pageName: string) {
+  const allContents = await getPageContentsFromSheets();
+  return allContents.filter((content) => content.page === pageName);
+}
+
+// ページコンテンツを更新
+export async function updatePageContentInSheets(
+  page: string,
+  section: string,
+  field: string,
+  value: string
+) {
+  try {
+    const auth = getAuthClient();
+    if (!auth || !process.env.PAGE_CONTENTS_SPREADSHEET_ID) {
+      throw new Error('Google Sheets API not configured');
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    // 既存データを取得
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.PAGE_CONTENTS_SPREADSHEET_ID,
+      range: 'Sheet1!A2:E',
+    });
+
+    const rows = response.data.values || [];
+    const rowIndex = rows.findIndex(
+      (row) => row[0] === page && row[1] === section && row[2] === field
+    );
+
+    if (rowIndex === -1) {
+      // 存在しない場合は新規追加
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: process.env.PAGE_CONTENTS_SPREADSHEET_ID,
+        range: 'Sheet1!A:E',
+        valueInputOption: 'RAW',
+        requestBody: {
+          values: [[page, section, field, value, 'text']],
+        },
+      });
+    } else {
+      // 存在する場合は更新
+      const rowNumber = rowIndex + 2; // ヘッダー行があるため+2
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: process.env.PAGE_CONTENTS_SPREADSHEET_ID,
+        range: `Sheet1!D${rowNumber}`,
+        valueInputOption: 'RAW',
+        requestBody: {
+          values: [[value]],
+        },
+      });
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating page content in Google Sheets:', error);
+    return { success: false, error };
+  }
+}

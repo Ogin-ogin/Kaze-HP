@@ -2,6 +2,16 @@ import NewsCard from '@/components/NewsCard';
 import Link from 'next/link';
 import { getNewsFromSheets } from '@/lib/googleSheets';
 import MemberSection from '@/components/MemberSection';
+import dynamic from 'next/dynamic';
+
+// クライアントコンポーネントを動的インポート
+const HeroSection = dynamic(() => import('@/components/home/HeroSection'), {
+  ssr: true,
+});
+
+const AboutSection = dynamic(() => import('@/components/home/AboutSection'), {
+  ssr: true,
+});
 
 export default async function Home() {
   // Google Sheetsからニュースデータを取得（最新3件）
@@ -17,37 +27,10 @@ export default async function Home() {
   return (
     <div className="bg-white">
       {/* ヒーローセクション */}
-      <section className="relative h-[700px] bg-gradient-to-br from-pastel-blue-100 via-white to-pastel-blue-50">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center max-w-5xl px-4">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-semibold text-[#1d1d1f] mb-8 tracking-tight">
-              女声コーラス 風
-            </h1>
-            <p className="text-2xl md:text-3xl text-gray-600 mb-12 leading-relaxed font-light">
-              心を込めて歌を届ける。<br />
-              それが私たちの願いです。
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                href="/recruitment"
-                className="btn-apple-primary inline-block"
-              >
-                団員募集中
-              </Link>
-              <Link
-                href="/about"
-                className="btn-apple-secondary inline-block"
-              >
-                詳しく見る
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="max-w-[980px] mx-auto px-4 sm:px-6">\n
+      <HeroSection />
 
       {/* ニュースセクション */}
+      <div className="max-w-[980px] mx-auto px-4 sm:px-6">
       <section className="py-24">
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-4xl font-semibold text-[#1d1d1f] tracking-tight">ニュース</h2>
@@ -79,28 +62,8 @@ export default async function Home() {
       </section>
       </div>
 
-      {/* 団体紹介セクション */}
-      <section className="bg-gray-50 py-24">
-        <div className="max-w-[980px] mx-auto px-4 sm:px-6">
-          <h2 className="text-4xl font-semibold text-[#1d1d1f] mb-12 text-center tracking-tight">私たちについて</h2>
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-2xl text-[#1d1d1f] leading-relaxed font-light mb-8">
-              やさしいうた声は 大きな思いやりに<br />
-              楽しいうた声は おおきな喜びに<br />
-              そして ちいさなうた声は 大きなハーモニーに
-            </p>
-            <p className="text-xl text-gray-600 mb-10">
-              私たちはたくさんの仲間を待っています
-            </p>
-            <Link
-              href="/about"
-              className="text-[#06c] hover:underline text-lg font-medium"
-            >
-              もっと詳しく →
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* 団体紹介・練習風景セクション */}
+      <AboutSection />
 
       {/* 練習情報セクション */}
       <div className="max-w-[980px] mx-auto px-4 sm:px-6 py-24">

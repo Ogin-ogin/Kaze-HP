@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import MemberSection from '@/components/MemberSection';
 
 export default function InstructorsPage() {
   return (
@@ -71,6 +72,13 @@ export default function InstructorsPage() {
           </div>
         </div>
       </section>
+
+      {/* 団員向けセクション */}
+      <div className="bg-gray-50 py-24">
+        <div className="max-w-[980px] mx-auto px-4 sm:px-6">
+          <MemberSection />
+        </div>
+      </div>
     </div>
   );
 }
