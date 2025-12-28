@@ -65,6 +65,8 @@ export default function HeroSection() {
       if (updateResponse.ok) {
         setBackgroundImage(url);
         alert('背景画像を更新しました');
+        // ページをリロードして確実に最新画像を表示
+        window.location.reload();
       } else {
         throw new Error('更新に失敗しました');
       }
@@ -97,6 +99,8 @@ export default function HeroSection() {
         setShowUrlInput(false);
         setUrlInput('');
         alert('背景画像を更新しました');
+        // ページをリロードして確実に最新画像を表示
+        window.location.reload();
       } else {
         throw new Error('更新に失敗しました');
       }

@@ -60,7 +60,7 @@ export default function EditableImageWithUrl({
 
     setIsUploading(true);
     try {
-      // 画像をGoogle Driveにアップロード
+      // 画像をCloudinary/Google Driveにアップロード
       const formData = new FormData();
       formData.append('file', file);
 
@@ -85,7 +85,10 @@ export default function EditableImageWithUrl({
 
       if (updateResponse.ok) {
         setImageUrl(url);
+        setPreviewUrl(url); // キャッシュバスティングのため再設定
         alert('画像を更新しました');
+        // ページをリロードして確実に最新画像を表示
+        window.location.reload();
       } else {
         throw new Error('更新に失敗しました');
       }
@@ -119,6 +122,8 @@ export default function EditableImageWithUrl({
         setShowUrlInput(false);
         setUrlInput('');
         alert('画像URLを更新しました');
+        // ページをリロードして確実に最新画像を表示
+        window.location.reload();
       } else {
         throw new Error('更新に失敗しました');
       }

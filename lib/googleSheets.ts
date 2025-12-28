@@ -35,13 +35,20 @@ export async function getNewsFromSheets() {
 
     const rows = response.data.values || [];
 
-    return rows.map((row) => ({
+    const news = rows.map((row) => ({
       id: row[0] || '',
       title: row[1] || '',
       date: row[2] || '',
       thumbnail: row[3] || '',
       content: row[4] || '',
     }));
+
+    // 日付の新しい順にソート
+    return news.sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateB - dateA; // 降順（新しい順）
+    });
   } catch (error) {
     console.error('Error fetching news from Google Sheets:', error);
     return [];

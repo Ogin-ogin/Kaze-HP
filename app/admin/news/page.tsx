@@ -259,6 +259,20 @@ export default function AdminNewsPage() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pastel-blue-500 focus:border-pastel-blue-500"
                   required
                 />
+                <p className="text-sm text-gray-500 mt-2">
+                  本文中に画像を挿入するには、下のボタンから画像をアップロードしてください
+                </p>
+                <div className="mt-4">
+                  <ImageUpload
+                    currentImageUrl=""
+                    onImageUploaded={(url) => {
+                      // 本文に[IMAGE:URL]形式で挿入
+                      const imageTag = `\n[IMAGE:${url}]\n`;
+                      setFormData({ ...formData, content: formData.content + imageTag });
+                    }}
+                    label="本文に画像を挿入"
+                  />
+                </div>
               </div>
 
               <div className="flex justify-end gap-3">
