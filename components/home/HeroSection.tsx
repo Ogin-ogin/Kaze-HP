@@ -119,7 +119,7 @@ export default function HeroSection() {
         )}
         {/* 編集可能な背景画像（編集モード時のみ表示） */}
         {isEditMode && (
-          <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+          <div className="absolute top-4 right-4 z-30 flex flex-col gap-2">
             <label className="cursor-pointer inline-flex items-center px-4 py-2 bg-white text-pastel-blue-500 text-sm font-medium rounded-lg hover:bg-gray-50 shadow-lg transition-all">
               <input
                 type="file"
@@ -158,7 +158,7 @@ export default function HeroSection() {
         )}
         {/* URL入力パネル */}
         {isEditMode && showUrlInput && (
-          <div className="absolute top-4 left-4 right-4 max-w-md z-20 bg-white p-4 rounded-lg shadow-xl">
+          <div className="absolute top-4 left-4 right-4 max-w-md z-40 bg-white p-4 rounded-lg shadow-xl">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">背景画像のURLを入力</h3>
             <input
               type="url"
