@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 
 interface EditableImageWithUrlProps {
   page: string;
@@ -134,12 +133,11 @@ export default function EditableImageWithUrl({
   return (
     <div className={`relative group ${className}`}>
       {previewUrl ? (
-        <div className="relative w-full h-full">
-          <Image
+        <div className="relative w-full h-full overflow-hidden">
+          <img
             src={previewUrl}
             alt={placeholderText}
-            fill
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </div>
       ) : (

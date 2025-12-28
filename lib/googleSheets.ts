@@ -575,7 +575,7 @@ export async function updatePageContentInSheets(
     // 既存データを取得
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'News!A2:E',
+      range: 'PageContents!A2:E',
     });
 
     const rows = response.data.values || [];
@@ -587,7 +587,7 @@ export async function updatePageContentInSheets(
       // 存在しない場合は新規追加
       await sheets.spreadsheets.values.append({
         spreadsheetId: process.env.SPREADSHEET_ID,
-        range: 'News!A:E',
+        range: 'PageContents!A:E',
         valueInputOption: 'RAW',
         requestBody: {
           values: [[page, section, field, value, 'text']],
