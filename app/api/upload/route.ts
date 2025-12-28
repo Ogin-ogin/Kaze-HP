@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { uploadImageToCloudinary } from '@/lib/cloudinary';
 import { uploadImageToDrive } from '@/lib/googleDrive';
 
 export async function POST(request: NextRequest) {
@@ -32,11 +33,21 @@ export async function POST(request: NextRequest) {
     // ファイルをBufferに変換
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-
-    // Google Driveにアップロード
     const timestamp = Date.now();
     const fileName = `${timestamp}-${file.name}`;
-    const imageUrl = await uploadImageToDrive(buffer, fileName, file.type);
+
+    let imageUrl: string;
+
+    // Cloudinaryが設定されている場合はCloudinaryを使用、それ以外はGoogle Drive
+    const useCloudinary = process.env.CLOUDINARY_CLOUD_NAME &&
+                          process.env.CLOUDINARY_API_KEY &&
+                          process.env.CLOUDINARY_API_SECRET;
+
+    if (useCloudinary) {
+      imageUrl = await uploadImageToCloudinary(buffer, fileName);
+    } else {
+      imageUrl = await uploadImageToDrive(buffer, fileName, file.type);
+    }
 
     return NextResponse.json({ url: imageUrl });
   } catch (error: any) {
