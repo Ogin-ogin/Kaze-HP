@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getConcertsFromSheets } from '@/lib/googleSheets';
+import AdminLink from '@/components/AdminLink';
 
 export default async function ConcertsPage() {
   const concerts = await getConcertsFromSheets();
@@ -23,6 +24,9 @@ export default async function ConcertsPage() {
 
       {/* ギャラリービュー */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-24">
+        <div className="flex justify-end mb-6">
+          <AdminLink href="/admin/concerts" label="演奏会を編集・追加" />
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {concerts.length > 0 ? (
             concerts.map((concert) => (

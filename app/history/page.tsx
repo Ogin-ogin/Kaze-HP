@@ -1,4 +1,5 @@
 import { getHistoryFromSheets } from '@/lib/googleSheets';
+import AdminLink from '@/components/AdminLink';
 
 export default async function HistoryPage() {
   const activities = await getHistoryFromSheets();
@@ -27,6 +28,9 @@ export default async function HistoryPage() {
 
       {/* 活動実績リスト */}
       <section className="max-w-[980px] mx-auto px-4 sm:px-6 py-24">
+        <div className="flex justify-end mb-6">
+          <AdminLink href="/admin/history" label="活動実績を編集・追加" />
+        </div>
         {activities.length > 0 ? (
           <div className="space-y-0 divide-y divide-gray-100">
             {activities.map((activity, index) => (

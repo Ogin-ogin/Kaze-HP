@@ -244,7 +244,7 @@ export async function addConcertToSheets(concert: {
     // 既存のデータ数を取得してIDを自動生成
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'News!A:A',
+      range: 'Concerts!A:A',
     });
 
     const rows = response.data.values || [];
@@ -287,7 +287,7 @@ export async function updateConcertInSheets(
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'News!A:A',
+      range: 'Concerts!A:A',
     });
 
     const rows = response.data.values || [];
@@ -326,7 +326,7 @@ export async function deleteConcertFromSheets(id: string) {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'News!A:A',
+      range: 'Concerts!A:A',
     });
 
     const rows = response.data.values || [];
@@ -338,6 +338,10 @@ export async function deleteConcertFromSheets(id: string) {
 
     const rowNumber = rowIndex + 1;
 
+    const metaRes = await sheets.spreadsheets.get({ spreadsheetId: process.env.SPREADSHEET_ID! });
+    const concertsSheet = metaRes.data.sheets?.find(s => s.properties?.title === 'Concerts');
+    const concertsSheetId = concertsSheet?.properties?.sheetId ?? 1;
+
     await sheets.spreadsheets.batchUpdate({
       spreadsheetId: process.env.SPREADSHEET_ID,
       requestBody: {
@@ -345,7 +349,7 @@ export async function deleteConcertFromSheets(id: string) {
           {
             deleteDimension: {
               range: {
-                sheetId: 0,
+                sheetId: concertsSheetId,
                 dimension: 'ROWS',
                 startIndex: rowNumber,
                 endIndex: rowNumber + 1,
@@ -405,7 +409,7 @@ export async function addHistoryToSheets(history: {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'News!A:A',
+      range: 'History!A:A',
     });
 
     const rows = response.data.values || [];
@@ -444,7 +448,7 @@ export async function updateHistoryInSheets(
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'News!A:A',
+      range: 'History!A:A',
     });
 
     const rows = response.data.values || [];
@@ -483,7 +487,7 @@ export async function deleteHistoryFromSheets(id: string) {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'News!A:A',
+      range: 'History!A:A',
     });
 
     const rows = response.data.values || [];
@@ -495,6 +499,10 @@ export async function deleteHistoryFromSheets(id: string) {
 
     const rowNumber = rowIndex + 1;
 
+    const metaRes = await sheets.spreadsheets.get({ spreadsheetId: process.env.SPREADSHEET_ID! });
+    const historySheet = metaRes.data.sheets?.find(s => s.properties?.title === 'History');
+    const historySheetId = historySheet?.properties?.sheetId ?? 2;
+
     await sheets.spreadsheets.batchUpdate({
       spreadsheetId: process.env.SPREADSHEET_ID,
       requestBody: {
@@ -502,7 +510,7 @@ export async function deleteHistoryFromSheets(id: string) {
           {
             deleteDimension: {
               range: {
-                sheetId: 0,
+                sheetId: historySheetId,
                 dimension: 'ROWS',
                 startIndex: rowNumber,
                 endIndex: rowNumber + 1,

@@ -1,7 +1,16 @@
 import { MetadataRoute } from 'next';
+import { getConcertsFromSheets } from '@/lib/googleSheets';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://kaze-hp.vercel.app';
+
+  const concerts = await getConcertsFromSheets().catch(() => []);
+  const concertUrls: MetadataRoute.Sitemap = concerts.map((c) => ({
+    url: `${baseUrl}/concerts/${c.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'yearly' as const,
+    priority: 0.6,
+  }));
 
   return [
     {
@@ -58,5 +67,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    ...concertUrls,
   ];
 }
