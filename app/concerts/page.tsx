@@ -2,6 +2,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getConcertsFromSheets } from '@/lib/googleSheets';
 import AdminLink from '@/components/AdminLink';
+import MemberSection from '@/components/MemberSection';
+import dynamicImport from 'next/dynamic';
+
+const ConcertsHeroSection = dynamicImport(
+  () => import('@/components/concerts/ConcertsHeroSection'),
+  { ssr: true }
+);
+
+export const dynamic = 'force-dynamic';
 
 export default async function ConcertsPage() {
   const concerts = await getConcertsFromSheets();
@@ -9,18 +18,7 @@ export default async function ConcertsPage() {
   return (
     <div className="bg-white">
       {/* ヒーローセクション */}
-      <section className="relative h-[500px] bg-gradient-to-br from-pastel-blue-100 to-white">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center max-w-3xl px-4">
-            <h1 className="text-5xl md:text-6xl font-semibold text-[#1d1d1f] mb-6 tracking-tight">
-              風の演奏会史
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 font-light">
-              これまでの演奏会やコンサートの記録
-            </p>
-          </div>
-        </div>
-      </section>
+      <ConcertsHeroSection />
 
       {/* ギャラリービュー */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-24">
@@ -73,6 +71,13 @@ export default async function ConcertsPage() {
           )}
         </div>
       </section>
+
+      {/* 団員向けセクション */}
+      <div className="bg-gray-50 py-24">
+        <div className="max-w-[980px] mx-auto px-4 sm:px-6">
+          <MemberSection />
+        </div>
+      </div>
     </div>
   );
 }

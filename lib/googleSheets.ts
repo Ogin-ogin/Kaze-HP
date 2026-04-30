@@ -156,8 +156,8 @@ export async function updateNewsInSheets(
       return { success: false, error: 'News not found' };
     }
 
-    // 行番号は1から始まり、ヘッダー行があるため+2
-    const rowNumber = rowIndex + 2;
+    // rows[0]はヘッダー(シート行1)、rows[rowIndex]はシート行rowIndex+1
+    const rowNumber = rowIndex + 1;
 
     await sheets.spreadsheets.values.update({
       spreadsheetId: process.env.SPREADSHEET_ID,
@@ -197,9 +197,7 @@ export async function deleteNewsFromSheets(id: string) {
       return { success: false, error: 'News not found' };
     }
 
-    // 行番号は0から始まるため+1
-    const rowNumber = rowIndex + 1;
-
+    // rows[rowIndex]は0-basedシートインデックスrowIndexと同じ位置
     await sheets.spreadsheets.batchUpdate({
       spreadsheetId: process.env.SPREADSHEET_ID,
       requestBody: {
@@ -209,8 +207,8 @@ export async function deleteNewsFromSheets(id: string) {
               range: {
                 sheetId: 0, // 最初のシートのID
                 dimension: 'ROWS',
-                startIndex: rowNumber,
-                endIndex: rowNumber + 1,
+                startIndex: rowIndex,
+                endIndex: rowIndex + 1,
               },
             },
           },
@@ -297,7 +295,7 @@ export async function updateConcertInSheets(
       return { success: false, error: 'Concert not found' };
     }
 
-    const rowNumber = rowIndex + 2;
+    const rowNumber = rowIndex + 1;
 
     await sheets.spreadsheets.values.update({
       spreadsheetId: process.env.SPREADSHEET_ID,
@@ -336,8 +334,6 @@ export async function deleteConcertFromSheets(id: string) {
       return { success: false, error: 'Concert not found' };
     }
 
-    const rowNumber = rowIndex + 1;
-
     const metaRes = await sheets.spreadsheets.get({ spreadsheetId: process.env.SPREADSHEET_ID! });
     const concertsSheet = metaRes.data.sheets?.find(s => s.properties?.title === 'Concerts');
     const concertsSheetId = concertsSheet?.properties?.sheetId ?? 1;
@@ -351,8 +347,8 @@ export async function deleteConcertFromSheets(id: string) {
               range: {
                 sheetId: concertsSheetId,
                 dimension: 'ROWS',
-                startIndex: rowNumber,
-                endIndex: rowNumber + 1,
+                startIndex: rowIndex,
+                endIndex: rowIndex + 1,
               },
             },
           },
@@ -458,7 +454,7 @@ export async function updateHistoryInSheets(
       return { success: false, error: 'History not found' };
     }
 
-    const rowNumber = rowIndex + 2;
+    const rowNumber = rowIndex + 1;
 
     await sheets.spreadsheets.values.update({
       spreadsheetId: process.env.SPREADSHEET_ID,
@@ -497,8 +493,6 @@ export async function deleteHistoryFromSheets(id: string) {
       return { success: false, error: 'History not found' };
     }
 
-    const rowNumber = rowIndex + 1;
-
     const metaRes = await sheets.spreadsheets.get({ spreadsheetId: process.env.SPREADSHEET_ID! });
     const historySheet = metaRes.data.sheets?.find(s => s.properties?.title === 'History');
     const historySheetId = historySheet?.properties?.sheetId ?? 2;
@@ -512,8 +506,8 @@ export async function deleteHistoryFromSheets(id: string) {
               range: {
                 sheetId: historySheetId,
                 dimension: 'ROWS',
-                startIndex: rowNumber,
-                endIndex: rowNumber + 1,
+                startIndex: rowIndex,
+                endIndex: rowIndex + 1,
               },
             },
           },
