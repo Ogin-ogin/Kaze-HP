@@ -1,5 +1,14 @@
 import { getHistoryFromSheets } from '@/lib/googleSheets';
 import AdminLink from '@/components/AdminLink';
+import MemberSection from '@/components/MemberSection';
+import dynamicImport from 'next/dynamic';
+
+const EditableHeroSection = dynamicImport(
+  () => import('@/components/EditableHeroSection'),
+  { ssr: true }
+);
+
+export const dynamic = 'force-dynamic';
 
 export default async function HistoryPage() {
   const activities = await getHistoryFromSheets();
@@ -13,18 +22,11 @@ export default async function HistoryPage() {
   return (
     <div className="bg-white">
       {/* ヒーローセクション */}
-      <section className="relative h-[500px] bg-gradient-to-br from-pastel-blue-50 to-white">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center max-w-3xl px-4">
-            <h1 className="text-5xl md:text-6xl font-semibold text-[#1d1d1f] mb-6 tracking-tight">
-              風の通り道
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 font-light">
-              主な活動実績
-            </p>
-          </div>
-        </div>
-      </section>
+      <EditableHeroSection
+        page="history"
+        title="風の通り道"
+        subtitle="主な活動実績"
+      />
 
       {/* 活動実績リスト */}
       <section className="max-w-[980px] mx-auto px-4 sm:px-6 py-24">
@@ -62,6 +64,13 @@ export default async function HistoryPage() {
           </p>
         </div>
       </section>
+
+      {/* 団員向けセクション */}
+      <div className="bg-gray-50 py-24">
+        <div className="max-w-[980px] mx-auto px-4 sm:px-6">
+          <MemberSection />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import MemberSection from '@/components/MemberSection';
+import EditableHeroSection from '@/components/EditableHeroSection';
 
 export default function ContactPage() {
   const googleFormUrl = process.env.NEXT_PUBLIC_GOOGLE_FORM_URL || 'https://forms.google.com/';
@@ -6,18 +7,11 @@ export default function ContactPage() {
   return (
     <div className="bg-white">
       {/* ヒーローセクション */}
-      <section className="relative h-[500px] bg-gradient-to-br from-pastel-blue-100 to-white">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center max-w-3xl px-4">
-            <h1 className="text-5xl md:text-6xl font-semibold text-[#1d1d1f] mb-6 tracking-tight">
-              お問い合わせ
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 font-light leading-relaxed">
-              見学・体験練習は随時受け付けています
-            </p>
-          </div>
-        </div>
-      </section>
+      <EditableHeroSection
+        page="contact"
+        title="お問い合わせ"
+        subtitle="見学・体験練習は随時受け付けています"
+      />
 
       {/* 練習見学について */}
       <section className="max-w-[980px] mx-auto px-4 sm:px-6 py-24">

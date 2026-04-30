@@ -1,22 +1,17 @@
 import Link from 'next/link';
 import MemberSection from '@/components/MemberSection';
+import EditableHeroSection from '@/components/EditableHeroSection';
 
 export default function RecruitmentPage() {
   return (
     <div className="bg-white">
       {/* ヒーローセクション */}
-      <section className="relative h-[600px] bg-gradient-to-br from-pastel-blue-200 via-pastel-blue-100 to-white">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center max-w-4xl px-4">
-            <h1 className="text-6xl md:text-7xl font-semibold text-[#1d1d1f] mb-8 tracking-tight">
-              団員募集
-            </h1>
-            <p className="text-2xl md:text-3xl text-gray-600 font-light leading-relaxed">
-              あなたも私たちと一緒に<br className="md:hidden" />歌いませんか
-            </p>
-          </div>
-        </div>
-      </section>
+      <EditableHeroSection
+        page="recruitment"
+        title="団員募集"
+        subtitle="あなたも私たちと一緒に歌いませんか"
+        height="h-[600px]"
+      />
 
       {/* 募集条件 */}
       <section className="max-w-[980px] mx-auto px-4 sm:px-6 py-24">

@@ -1,21 +1,17 @@
 import MemberSection from '@/components/MemberSection';
+import EditableHeroSection from '@/components/EditableHeroSection';
+import EditableSectionImage from '@/components/EditableSectionImage';
 
 export default function AboutPage() {
   return (
     <div className="bg-white">
       {/* ヒーローセクション */}
-      <section className="relative h-[600px] bg-gradient-to-br from-pastel-blue-100 via-white to-pastel-blue-50">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center max-w-4xl px-4">
-            <h1 className="text-6xl md:text-7xl font-semibold text-[#1d1d1f] mb-8 tracking-tight leading-tight">
-              心を込めて歌を届ける
-            </h1>
-            <p className="text-2xl md:text-3xl text-gray-600 font-light leading-relaxed">
-              それが私たちの願いです
-            </p>
-          </div>
-        </div>
-      </section>
+      <EditableHeroSection
+        page="about"
+        title="心を込めて歌を届ける"
+        subtitle="それが私たちの願いです"
+        height="h-[600px]"
+      />
 
       {/* メインメッセージ */}
       <section className="max-w-[980px] mx-auto px-4 sm:px-6 py-24">
@@ -35,11 +31,13 @@ export default function AboutPage() {
       <section className="bg-gray-50">
         <div className="max-w-[980px] mx-auto px-4 sm:px-6 py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div className="relative h-[400px] bg-pastel-blue-100 rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
-                合唱の様子
-              </div>
-            </div>
+            <EditableSectionImage
+              page="about"
+              section="philosophy"
+              field="image"
+              placeholder="合唱の様子"
+              className="relative h-[400px] bg-pastel-blue-100 rounded-2xl overflow-hidden"
+            />
 
             <div>
               <h2 className="text-4xl font-semibold text-[#1d1d1f] mb-6 tracking-tight">
